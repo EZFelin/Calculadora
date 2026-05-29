@@ -57,6 +57,18 @@ body {
 .operator:hover {
     background: #dc2626;
 }
+.clear {
+    background: #ef4444;
+}
+.clear:hover {
+    background: #dc2626;
+}
+.v {
+    background: #10b981;
+}
+.v:hover {
+    background: #059669;
+}
 #equals {
     grid-column: span 4;
 }
