@@ -1,5 +1,7 @@
 const btn = document.querySelectorAll('.btn');
 const display = document.querySelector('.display');
+const equation = document.querySelector('.equation');
+const result = document.querySelector('.result');
 
 let firstnumber = 0;
 let firstoperator = '';
@@ -9,51 +11,86 @@ function calculate(button) {
     // IGUAL
     if (button.textContent == '=') {
         calculated = true;
-        let result = '';
+        let finalResult = 0;
         if (firstoperator == "+") {
-            result += parseFloat(firstnumber) + parseFloat(display.textContent);
-            display.textContent = result;
+            finalResult = parseFloat(firstnumber) + parseFloat(result.textContent);
+            firstnumber = finalResult;
+            result.textContent = finalResult;
         }
         if (firstoperator == "-") {
-            result += parseFloat(firstnumber) - parseFloat(display.textContent);
-            display.textContent = result;
-        }   
+            finalResult = parseFloat(firstnumber) - parseFloat(result.textContent);
+            firstnumber = finalResult;
+            result.textContent = finalResult;
+        } 
         if (firstoperator == "*") {
-            result += parseFloat(firstnumber) * parseFloat(display.textContent);
-            display.textContent = result;
+            finalResult = parseFloat(firstnumber) * parseFloat(result.textContent);
+            firstnumber = finalResult;
+            result.textContent = finalResult;
         }
         if (firstoperator == "/") {
-            result += parseFloat(firstnumber) / parseFloat(display.textContent);
-            display.textContent = result;
+            finalResult = parseFloat(firstnumber) / parseFloat(result.textContent);
+            firstnumber = finalResult;
+            result.textContent = finalResult;
         }
+        equation.textContent = firstnumber + " " + firstoperator + " " + result.textContent;
+        result.textContent = finalResult;
+        firstoperator = '';
     }
-    // ADIÇÃO
-    if (button.textContent == '+') {
-        firstoperator = "+";
-        firstnumber = display.textContent;
-        display.textContent = '';
+if (
+    button.textContent == '+' ||
+    button.textContent == '-' ||
+    button.textContent == '*' ||
+    button.textContent == '/'
+) {
+
+    // SE JÁ EXISTE OPERAÇÃO
+    if (firstoperator != '' && result.textContent != '') {
+
+        if (firstoperator == "+") {
+            firstnumber =
+                parseFloat(firstnumber) +
+                parseFloat(result.textContent);
+        }
+
+        if (firstoperator == "-") {
+            firstnumber =
+                parseFloat(firstnumber) -
+                parseFloat(result.textContent);
+        }
+
+        if (firstoperator == "*") {
+            firstnumber =
+                parseFloat(firstnumber) *
+                parseFloat(result.textContent);
+        }
+
+        if (firstoperator == "/") {
+            firstnumber =
+                parseFloat(firstnumber) /
+                parseFloat(result.textContent);
+        }
+
+        result.textContent = firstnumber;
     }
-    // SUBTRAÇÃO
-    if (button.textContent == '-') {
-        firstoperator = "-";
-        firstnumber = display.textContent;
-        display.textContent = '';
+
+    // PRIMEIRA OPERAÇÃO
+    else {
+
+        firstnumber = result.textContent;
+
     }
-    // MULTIPLICAÇÃO
-    if (button.textContent == '*') {
-        firstoperator = "*";
-        firstnumber = display.textContent;
-        display.textContent = '';
-    }
-    // DIVISÃO
-    if (button.textContent == '/') {
-        firstoperator = "/";
-        firstnumber = display.textContent;
-        display.textContent = '';
-    }
+
+    firstoperator = button.textContent;
+
+    equation.textContent =
+        firstnumber + " " + firstoperator;
+
+    result.textContent = '';
+}
     // LIMPAR O DISPLAY
     if (button.textContent == 'C') {
-        display.textContent = '';
+        result.textContent = '';
+        equation.textContent = '';
     }
     // NÚMEROS E PONTO
     if (button.textContent == '1' ||
@@ -68,20 +105,21 @@ function calculate(button) {
         button.textContent == '0' ||
         button.textContent == '.') {
         if (calculated) {
-            display.textContent = '';
+            result.textContent = '';
+            equation.textContent = '';
+
             calculated = false;
         }
         // EVITA QUE TENHA MAIS DE UM PONTO
         if (
             button.textContent == '.' &&
-            display.textContent.includes('.')
+            result.textContent.includes('.')
         ) {
             return;
         }
-        display.textContent += button.textContent;
+        result.textContent += button.textContent;
     }
 }
-
 btn.forEach(button => {
     button.addEventListener('click', () => {
         calculate(button);
