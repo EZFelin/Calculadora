@@ -42,4 +42,4 @@ Esse projeto foi desenvolvido para praticar lógica de programação através da
 
 ## 🔗 Deploy
 
-(Adicionar link do Vercel futuramente)
+(https://calculadora-jade-eight.vercel.app/)
