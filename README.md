@@ -38,7 +38,7 @@ Esse projeto foi desenvolvido para praticar lógica de programação através da
 
 ## 📸 Preview
 
-(Adicionar screenshot futuramente)
+![Calculadora](CodeCalculadora.png)
 
 ## 🔗 Deploy
 

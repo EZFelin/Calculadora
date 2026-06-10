@@ -34,6 +34,7 @@ function calculate(button) {
         }
         equation.textContent = firstnumber + " " + firstoperator + " " + result.textContent;
         result.textContent = finalResult;
+        equation.textContent = '';
         firstoperator = '';
     }
 if (
